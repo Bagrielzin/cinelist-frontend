@@ -52,6 +52,7 @@ function Profile() {
       ]);
 
       const rawRatings = ratingsResponse.results || [];
+      console.log("Tipos de mídia recebidos da API:", rawRatings.map(item => item.type));
       const uniqueRatings = removeDuplicatesById(rawRatings);
 
       const getTypePriority = (type) => {
