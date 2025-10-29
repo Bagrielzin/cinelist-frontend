@@ -52,7 +52,6 @@ function Profile() {
       ]);
 
       const rawRatings = ratingsResponse.results || [];
-      console.log("Tipos de mídia recebidos da API:", rawRatings.map(item => item.type));
       const uniqueRatings = removeDuplicatesById(rawRatings);
 
       const getTypePriority = (type) => {
@@ -64,7 +63,7 @@ function Profile() {
         }
       };
 
-      const sortedRatings = uniqueRatings.sort((a, b) => {
+      const sortedRatings = [...uniqueRatings].sort((a, b) => {
         const priorityA = getTypePriority(a.type);
         const priorityB = getTypePriority(b.type);
         return priorityA - priorityB;
