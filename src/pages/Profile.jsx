@@ -85,15 +85,18 @@ function Profile() {
     return [...ratings].sort((a, b) => {
       const priorityA = getTypePriority(a.type);
       const priorityB = getTypePriority(b.type);
-      return priorityA - priorityB;
+
+      if (priorityA !== priorityB) {
+        return priorityA - priorityB;
+      }
+
+      const titleA = (a.title || a.name || '').toString();
+      const titleB = (b.title || b.name || '').toString();
+
+      return titleA.localeCompare(titleB);
     });
 
   }, [ratings]);
-
-  console.log(
-    "Tipos no array ordenado (do useMemo):", 
-    sortedRatings.map(r => r.type)
-  );
 
   const handleSaveUsername = async () => {
     if (!isAuthenticated || !user) {
