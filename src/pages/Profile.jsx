@@ -53,7 +53,23 @@ function Profile() {
 
       const rawRatings = ratingsResponse.results || [];
       const uniqueRatings = removeDuplicatesById(rawRatings);
-      setRatings(uniqueRatings);
+
+      const getTypePriority = (type) => {
+        switch (type) {
+          case 'movie': return 1;
+          case 'serie': return 2;
+          case 'anime': return 3;
+          default: return 4;
+        }
+      };
+
+      const sortedRatings = uniqueRatings.sort((a, b) => {
+        const priorityA = getTypePriority(a.type);
+        const priorityB = getTypePriority(b.type);
+        return priorityA - priorityB;
+      });
+
+      setRatings(sortedRatings);
       setLists(listsResponse || []);
     } catch (error) {
       showMessage('Erro ao carregar dados do perfil.', 'error');
