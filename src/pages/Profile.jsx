@@ -82,6 +82,11 @@ function Profile() {
       }
     };
 
+    console.log(
+      "Tipos no array ordenado (do useMemo):", 
+      sortedRatings.map(r => r.type)
+    );
+
     return [...ratings].sort((a, b) => {
       const priorityA = getTypePriority(a.type);
       const priorityB = getTypePriority(b.type);
