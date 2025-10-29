@@ -2,7 +2,9 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'cinelist-backend-production.up.railway.app', // local: http://localhost:8000
+  baseURL: 'cinelist-backend-production.up.railway.app', //railway
+  // local: http://localhost:8000
+  // render: https://cinelist-backend-qj4c.onrender.com
   headers: {
     'Content-Type': 'application/json',
   },
